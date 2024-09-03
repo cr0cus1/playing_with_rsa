@@ -16,5 +16,7 @@ int create_public_key() {
 }
 
 int main() {
+    if(create_public_key() < 0)
+        perror("some error");
 
 }
