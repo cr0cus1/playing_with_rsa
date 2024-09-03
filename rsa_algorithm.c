@@ -1,22 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <string.h>
 
 int euler_function(int p, int q) {
     return (p-1)*(q-1);
 }
 
-int create_public_key() {
-    int p, q, public_exponent, modulus;
-    p = 7;
-    q = 13;
-    
-    modulus=p*q;
+void encrypt_message(char msg[]) {
+    int p = 7;
+    int q = 13;
+    int public_exponent = 7;
 
-    return 0;
+    int modulus=p*q;
+
+    for(int i = 0; i < strlen(msg); i++) {
+        long long long_char = round(pow(msg[i], public_exponent));
+        int encrypted_char = long_char % modulus;
+
+        printf("%c", encrypted_char+40);
+    }
+    printf("\n");
+
 }
 
 int main() {
-    if(create_public_key() < 0)
-        perror("some error");
-
+    char msg[] = "i have so much weed";
+    encrypt_message(msg);
 }
